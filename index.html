@@ -6,16 +6,18 @@
   border-collapse: collapse;
   width: 80%;
 }
-        </style>
+ </style>
 <body>
 
- 
-<p id="demo"></p>
+<h1 style="font-family:verdana;">Urlaubspreise :D</h1>
 
 <script>
 //document.getElementById("demo").innerHTML = httpGet("https://aida.de/finden/NO07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2");
 function httpGet(theUrl)
 {
+    if(theUrl == ''){
+        return "Preis (gesamt)";
+    }
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
@@ -23,32 +25,52 @@ function httpGet(theUrl)
     const myArray = resp.split("<aida-price class=\"d-block route-offers__cabin-price\"");
     let p = myArray[3];
 
-    return p.substring(8,14);
+    return p.substring(8,14) + " €";
 }
-const urls = ['https://aida.de/finden/NO07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2','https://aida.de/finden/PR07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2','https://aida.de/finden/DI07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2','https://aida.de/finden/MA10220714/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2'];
-const reisen =['Norwegen ab Kiel','Metropolen ab Hamburg','Dänemark & Schweden','Norwegens Fjorde'];
+const urls = ['','https://aida.de/finden/NO07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2','https://aida.de/finden/PR07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2','https://aida.de/finden/DI07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2','https://aida.de/finden/MA10220714/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2'];
+const reisen =['Reise','Norwegen ab Kiel','Metropolen ab Hamburg','Dänemark & Schweden','Norwegens Fjorde'];
+const schiffe = ['Schiff','AIDAnova','AIDAprima','AIDAdiva','AIDAmar']
 const tbl = document.createElement("table");
   const tblBody = document.createElement("tbody");
 
   // creating all cells
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 4; i++) {
     // creates a table row
     const row = document.createElement("tr");
 
-    for (let j = 0; j < 4; j++) {
+    for (let j = 0; j < 5; j++) {
       // Create a <td> element and a text node, make the text
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
       //Kopfzeile
+   
       if(i ==0){
         const cell = document.createElement("td");
       const cellText = document.createTextNode(reisen[j]);
+      cell.setAttribute("style","font-size: 22px");
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      }
+      else if(i==1){
+        const cell = document.createElement("td");
+        
+      const cellText = document.createTextNode(schiffe[j]);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      }
+      else if (i==2){
+        const cell = document.createElement("td");
+      const cellText = document.createTextNode(httpGet(urls[j]));
       cell.appendChild(cellText);
       row.appendChild(cell);
       }
       else{
         const cell = document.createElement("td");
-      const cellText = document.createTextNode(httpGet(urls[j])+" €");
+        let cellText = document.createTextNode("Preis pro Person");
+        if(j!=0){
+           cellText = document.createTextNode(parseFloat(httpGet(urls[j]))/2 +" €");
+        }
+    
       cell.appendChild(cellText);
       row.appendChild(cell);
       }
@@ -64,7 +86,10 @@ const tbl = document.createElement("table");
   // appends <table> into <body>
   document.body.appendChild(tbl);
   // sets the border attribute of tbl to '2'
+  tbl.setAttribute("style", "font-size:20px;color:black;font-family:verdana;");
   tbl.setAttribute("border", "2");
+  
+  //tbl.setAttribute("style", "font-size:20px");
 
 </script> 
 
