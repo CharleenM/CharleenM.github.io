@@ -1,1 +1,22 @@
-"Hello World" 
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Use JavaScript to Change Text</h2>
+<p>This example writes "Hello JavaScript!" into an HTML element with id="demo":</p>
+
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = httpGet("https://aida.de/finden/NO07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2");
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+</script> 
+
+</body>
+</html>
