@@ -14,7 +14,7 @@ function httpGet(theUrl)
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
     var resp = xmlHttp.responseText;
-    const myArray = text.split("<aida-price class=\"d-block route-offers__cabin-price\"");
+    const myArray = resp.split("<aida-price class=\"d-block route-offers__cabin-price\"");
     let p = myArray[3];
 
     return p.substring(8,6);
