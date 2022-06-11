@@ -2,8 +2,7 @@
 <html>
 <body>
 
-<h2>Use JavaScript to Change Text</h2>
-<p>This example writes "Hello JavaScript!" into an HTML element with id="demo":</p>
+
 
 <p id="demo"></p>
 
@@ -14,7 +13,11 @@ function httpGet(theUrl)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
-    return xmlHttp.responseText;
+    var resp = xmlHttp.responseText;
+    const myArray = text.split("<aida-price class=\"d-block route-offers__cabin-price\"");
+    let p = myArray[3];
+
+    return p.substring(8,6);
 }
 </script> 
 
