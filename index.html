@@ -22,14 +22,14 @@ function httpGet(theUrl)
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
     var resp = xmlHttp.responseText;
-    const myArray = resp.split("<aida-price class=\"d-block route-offers__cabin-price\"");
+    const myArray = resp.split("\"d-block route-offers__cabin-price\"");
     let p = myArray[3];
 
     return p.substring(8,14) + " €";
 }
-const urls = ['','https://aida.de/finden/NO07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2','https://aida.de/finden/PR07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2','https://aida.de/finden/DI07220716/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2','https://aida.de/finden/MA10220714/VARIO?airport=&pax[adults]=0&pax[children]=0&pax[juveniles]=2'];
-const reisen =['Reise','Norwegen ab Kiel','Metropolen ab Hamburg','Dänemark & Schweden','Norwegens Fjorde'];
-const schiffe = ['Schiff','AIDAnova','AIDAprima','AIDAdiva','AIDAmar']
+const urls = ['','https://aida.de/finden/DI07230902/VARIO?airport=&cabin=B&pax[adults]=0&pax[children]=0&pax[juveniles]=2&ta=','https://aida.de/finden/NO07230909/VARIO?airport=&cabin=B&pax[adults]=0&pax[children]=0&pax[juveniles]=2&ta=','https://aida.de/finden/NO07230902/VARIO?airport=&cabin=B&pax[adults]=0&pax[children]=0&pax[juveniles]=2&ta=','https://aida.de/finden/CO07230909/VARIO?airport=&cabin=D&pax[adults]=0&pax[children]=0&pax[juveniles]=2&ta=','https://aida.de/finden/CO07230902/VARIO?airport=&cabin=D&pax[adults]=0&pax[children]=0&pax[juveniles]=2&ta=','https://aida.de/finden/CO07230908/VARIO?airport=&cabin=D&pax[adults]=0&pax[children]=0&pax[juveniles]=2&ta=','https://aida.de/finden/BL07230903/VARIO?airport=&cabin=B&pax[adults]=0&pax[children]=0&pax[juveniles]=2&ta='];
+const reisen =['Reise','Norwegen ab Warnemünde','Norwegen & Dänemark ab Kiel','Norwegen ab Kiel','Mediterrane Schätze ab Mallorca','Mediterrane Schätze ab Mallorca 2','Mediterrane Schätze ab Barcelona','Mittelmeerinseln ab Korfu'];
+const schiffe = ['Schiff','AIDAdiva','AIDAnova','AIDAnova','AIDAcosma','AIDAcosma','AIDAcosma','AIDAblu']
 const tbl = document.createElement("table");
   const tblBody = document.createElement("tbody");
 
@@ -38,7 +38,7 @@ const tbl = document.createElement("table");
     // creates a table row
     const row = document.createElement("tr");
 
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < urls.length; j++) {
       // Create a <td> element and a text node, make the text
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
