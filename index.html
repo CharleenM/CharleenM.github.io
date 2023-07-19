@@ -33,6 +33,10 @@ const schiffe = ['Schiff','AIDAdiva','AIDAnova','AIDAnova','AIDAcosma','AIDAcosm
 const tbl = document.createElement("table");
   const tblBody = document.createElement("tbody");
 
+
+// Create a database
+const db = new SQL.Database();
+
   // creating all cells
   for (let i = 0; i < 4; i++) {
     // creates a table row
@@ -43,7 +47,7 @@ const tbl = document.createElement("table");
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
       //Kopfzeile
-   
+     content1 = httpGet(urls[j])
       if(i ==0){
         const cell = document.createElement("td");
       const cellText = document.createTextNode(reisen[j]);
@@ -60,7 +64,7 @@ const tbl = document.createElement("table");
       }
       else if (i==2){
         const cell = document.createElement("td");
-      const cellText = document.createTextNode(httpGet(urls[j]));
+      const cellText = document.createTextNode(content1);
       cell.appendChild(cellText);
       row.appendChild(cell);
       }
@@ -68,7 +72,7 @@ const tbl = document.createElement("table");
         const cell = document.createElement("td");
         let cellText = document.createTextNode("Preis pro Person");
         if(j!=0){
-           cellText = document.createTextNode(parseFloat(httpGet(urls[j]))/2 +" €");
+           cellText = document.createTextNode(parseFloat(content1)/2 +" €");
         }
     
       cell.appendChild(cellText);
